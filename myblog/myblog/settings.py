@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	 'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django-blog',  # Название вашей базы данных PostgreSQL
+        'USER': 'postgres',  # Пользователь базы данных PostgreSQL
+        'PASSWORD': 'postgres',  # Пароль для пользователя базы данных
+        'HOST': 'localhost',  # Хост или IP-адрес сервера PostgreSQL
+        'PORT': '5432',  # Порт PostgreSQL
     }
 }
 
