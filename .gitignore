@@ -27,7 +27,7 @@ Thumbs.db
 media/
 
 # Static files
-static/
+# static/
 
 # Environment variables
 .env
