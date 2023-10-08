@@ -32,6 +32,13 @@
 					<div class="post__description">
 						<p>{{ post.description }}</p>
 					</div>
+
+					{% if post.img %}
+					<div class="post__image">
+						<img src="{{ post.img.url }}" alt="Post Image">
+					</div>
+					{% endif %}
+
 				</div>
 			</div>
 
