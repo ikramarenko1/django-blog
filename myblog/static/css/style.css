@@ -71,6 +71,43 @@ body {
   background-color: #f2f2f2;
 }
 
+.logo img {
+  width: 100%;
+  max-width: 75px;
+  height: auto;
+  padding-inline: 10px;
+}
+
+.header {
+  width: 100%;
+  background-color: #c7dcff;
+  padding: 5px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.header__login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-inline: 10px;
+  background-color: transparent;
+  border-radius: 10px;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.header__login-button:hover {
+  cursor: pointer;
+  background-color: #fff;
+  transform: scale(1.025);
+}
+.header__login-image img {
+  width: 18px;
+  height: 18px;
+}
+.header__login-content {
+  font-weight: 500;
+}
+
 .posts {
   display: flex;
   flex-direction: column;
@@ -87,7 +124,6 @@ body {
   width: calc(100% - 40px);
   max-width: 600px;
   padding: 16px 20px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 .posts .post__header {
   display: flex;
@@ -130,3 +166,16 @@ body {
 /*
 	===== MAIN =====
 */
+.footer {
+  width: 100%;
+  background-color: #c7dcff;
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.footer__copyright {
+  text-align: center;
+}

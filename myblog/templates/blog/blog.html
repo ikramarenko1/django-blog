@@ -14,36 +14,78 @@
 
 </head>
 <body>
-	<div class="posts">
-
-		{% for post in posts %}
-
-			<div class="post">
-				<div class="post__header">
-					<div class="post__author-photo"></div>
-					<div class="post__author-name">{{ post.author }}</div>
-					<div class="post__publishdate">{{ post.date }}</div>
-				</div>
-
-				<div class="post__body">
-					<div class="post__title">
-						<h3>{{ post.title }}</h3>
-					</div>
-					<div class="post__description">
-						<p>{{ post.description }}</p>
-					</div>
-
-					{% if post.img %}
-					<div class="post__image">
-						<img src="{{ post.img.url }}" alt="Post Image">
-					</div>
-					{% endif %}
-
-				</div>
+	<div class="content">
+		<!--
+			- HEADER
+		-->
+		<header class="header">
+			<div class="header__logo logo">
+				<a href="/">
+					<img src="{% static "img/logos/logo.png" %}" alt="">
+				</a>
 			</div>
 
-		{% endfor %}
+			<div class="header__login-button">
+				<div class="header__login-image">
+					<img src="{% static "img/person.png" %}" alt="">
+				</div>
+				<div class="header__login-content">
+					<a href="#">Login</a>
+				</div>
+			</div>
+		</header>
 
+		<!--
+			- MAIN
+		-->
+		<main class="main">
+			<div class="posts">
+		
+				{% for post in posts %}
+		
+					<div class="post">
+						<div class="post__header">
+							<div class="post__author-photo"></div>
+							<div class="post__author-name">{{ post.author }}</div>
+							<div class="post__publishdate">{{ post.date }}</div>
+						</div>
+		
+						<div class="post__body">
+							<div class="post__title">
+								<h3><a href="{{ post.id }}">{{ post.title }}</a></h3>
+							</div>
+							<div class="post__description">
+								<p>{{ post.description }}</p>
+							</div>
+		
+							{% if post.img %}
+							<div class="post__image">
+								<img src="{{ post.img.url }}" alt="Post Image">
+							</div>
+							{% endif %}
+		
+						</div>
+					</div>
+		
+				{% endfor %}
+			</div>
+		</main>
+
+		<!--
+			- FOOTER
+		-->
+		<footer class="footer">
+			<div class="footer__logo logo">
+				<a href="/">
+					<img src="{% static "img/logos/logo.png" %}" alt="">
+				</a>
+			</div>
+			
+			<div class="footer__copyright">
+				© Copyright. <br>
+				All Rights Reserved.
+			</div>
+		</footer>
 	</div>
 </body>
 </html>

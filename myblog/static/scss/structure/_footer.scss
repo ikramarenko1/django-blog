@@ -1,0 +1,16 @@
+.footer {
+	width: 100%;
+	background-color: #c7dcff;
+	padding: 10px 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+
+	// .footer__copyright
+
+	&__copyright {
+		text-align: center;
+	}
+}
