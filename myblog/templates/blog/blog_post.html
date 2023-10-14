@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Blog</title>
+	<title>{{ post.title }}</title>
 
 	<!--
 		- css
@@ -44,6 +44,15 @@
 
 				<div class="post post__page">
 					<div class="post__header">
+						<div class="post__back-button">
+							<a href="/">
+								<object data="{% static "img/back-btn.svg" %}" type="image/svg+xml">
+									<!-- Ваш браузер не поддерживает отображение объектов SVG -->
+								</object>
+								Вернуться назад
+							</a>
+						</div>
+
 						<div class="post__meta">
 							<div class="post__author-photo"></div>
 							<div class="post__author-name">{{ post.author }}</div>

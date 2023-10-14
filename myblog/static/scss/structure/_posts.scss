@@ -93,6 +93,8 @@
 	flex-direction: column;
 	gap: 20px;
 
+	
+
 	.post__header,
 	.post__body {
 		padding-inline: 50px;
@@ -110,6 +112,32 @@
 		justify-content: center;
 		gap: 20px;
 		margin: 0 auto;
+
+		.post__back-button {
+			a {
+				display: flex;
+				align-items: center;
+				height: 100%;
+				font-size: 12px;
+				text-transform: uppercase;
+				color: #000;
+				transition: all .2s ease-in-out;
+	
+				object {
+					width: 25px;
+					height: 25px;
+					transition: all .2s ease-in-out;
+				}
+
+				&:hover {
+					color: #8fb7f9;
+
+					object {
+						transform: translateX(-5px);
+					}
+				}
+			}
+		}
 
 		.post__meta {
 			display: flex;
