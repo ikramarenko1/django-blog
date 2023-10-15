@@ -176,12 +176,14 @@ body {
   gap: 20px;
 }
 .post.post__page .post__header,
-.post.post__page .post__body {
+.post.post__page .post__body,
+.post.post__page .post__comments {
   padding-inline: 50px;
 }
 @media (max-width: 598px) {
   .post.post__page .post__header,
-  .post.post__page .post__body {
+  .post.post__page .post__body,
+  .post.post__page .post__comments {
     padding-inline: 15px;
   }
 }
