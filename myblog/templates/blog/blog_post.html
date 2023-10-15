@@ -34,7 +34,7 @@
 				</div>
 			</div>
 		</header>
-
+		
 		<!--
 			- MAIN
 		-->
@@ -74,6 +74,27 @@
 						<div class="post__content">
 							<p>{{ post.description }}</p>
 						</div>
+					</div>
+
+					<div class="post__comments">
+						<h3>Оставить комментарий</h3>
+
+						<form action="#" class="post__comment">
+							<div class="post__comment-name">
+								<label for="name">Ваше имя*</label>
+								<input type="text" name="name" id="name" placeholder="Введите Ваше имя">
+							</div>
+
+							<div class="post__comment-email">
+								<label for="email">Ваш email*</label>
+								<input type="text" name="email" id="email" placeholder="Введите Ваш email">
+							</div>
+
+							<div class="post__comment-content">
+								<label for="comment">Ваш комментарий:</label>
+								<textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+							</div>
+						</form>
 					</div>
 				</div>
 
