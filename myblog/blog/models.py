@@ -17,7 +17,6 @@ class Post(models.Model):
         
 
 class Comment(models.Model):
-    email = models.EmailField()
     name = models.CharField('Имя', max_length=50)
     content = models.TextField('Текст комментария', max_length=1000)
     post = models.ForeignKey(Post, verbose_name='Публикация', on_delete=models.CASCADE)  # Когда удаляется объект публикации, все комментарии связаны с публикацией тоже удаляются
