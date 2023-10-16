@@ -79,7 +79,9 @@
 					<div class="post__comments">
 						<h2>Комментарии:</h2>
 
-						<form action="#" class="leave-comment">
+						<form action="{% url 'add_comment' post.id %}" method="POST" class="leave-comment">
+							{% csrf_token %}
+
 							<h3>Оставить комментарий к публикации</h3>
 
 							<div class="leave-comment__input input__name">
