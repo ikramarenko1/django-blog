@@ -40,4 +40,4 @@ class AddComment(View):
             form.post_id = pk
             form.save()
 
-        return redirect('/{pk}')
+        return redirect(f'/{pk}')
