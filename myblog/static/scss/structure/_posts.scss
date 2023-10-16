@@ -176,4 +176,12 @@
 			word-wrap: break-word;
 		}
 	}
+
+	.post__comments {
+		.input__textarea {
+			textarea {
+				padding-bottom: 50px;
+			}
+		}
+	}
 }

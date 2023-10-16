@@ -80,16 +80,16 @@
 						<h2>Комментарии:</h2>
 
 						<form action="#" class="leave-comment">
-							<h3>Хотите оставить комментарий?</h3>
+							<h3>Оставить комментарий к публикации</h3>
 
 							<div class="leave-comment__input input__name">
-								<label for="name">Ваше имя*:</label>
-								<input type="text" name="name" id="name" placeholder="Введите Ваше имя">
+								<input type="text" name="name" id="name" placeholder="Ваше имя" required>
 							</div>
 
-							<div class="leave-comment__input input__content">
-								<label for="comment">Ваш комментарий:</label>
-								<textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+							<div class="leave-comment__input input__textarea">
+								<textarea name="comment" id="comment" placeholder="Ваш комментарий.."></textarea>
+
+								<input type="submit" value="Отправить">
 							</div>
 						</form>
 					</div>
@@ -115,5 +115,10 @@
 			</div>
 		</footer>
 	</div>
+
+	<!--
+		- js
+	-->
+	<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
