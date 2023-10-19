@@ -78,3 +78,24 @@ class ToggleLike(View):
         like_count = post.like_set.count()
 
         return JsonResponse({'liked': liked, 'like_count': like_count})
+
+
+class CheckLikeStatus(View):
+    """
+    Проверка статуса лайка на посте при загрузке
+    """
+
+    def post(self, request):
+        ip_client = get_client_ip(request)
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, pk=post_id)
+
+        try:
+            like = Like.objects.get(ip=ip_client, post=post)
+            liked = True
+        except Like.DoesNotExist:
+            liked = False
+
+        like_count = post.like_set.count()
+
+        return JsonResponse({'liked': liked, 'like_count': like_count})

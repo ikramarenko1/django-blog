@@ -60,7 +60,9 @@
 		
 							{% if post.img %}
 							<div class="post__image">
-								<img src="{{ post.img.url }}" alt="Post Image">
+								<a href="{{ post.id }}">
+									<img src="{{ post.img.url }}" alt="Post Image">
+								</a>
 							</div>
 							{% endif %}
 		
