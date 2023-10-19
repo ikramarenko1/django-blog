@@ -318,6 +318,18 @@ textarea.input__textarea {
 .post.post__page .post__comments .leave-comment {
   margin-top: 50px;
 }
+.post.post__page .post__comments .post__comment {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-block: 20px;
+}
+.post.post__page .post__comments .post__comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
 
 /*
 	===== MAIN =====

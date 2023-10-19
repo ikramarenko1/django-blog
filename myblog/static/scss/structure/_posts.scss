@@ -187,5 +187,19 @@
 		.leave-comment {
 			margin-top: 50px;
 		}
+
+		.post__comment {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			margin-block: 20px;
+
+			&-header {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				gap: 5px;
+			}
+		}
 	}
 }
