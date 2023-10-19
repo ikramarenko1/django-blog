@@ -66,15 +66,11 @@ class ToggleLike(View):
 
         try:
             like = Like.objects.get(ip=ip_client, post=post)
-
             like.delete()
 
             liked = False
         except Like.DoesNotExist:
-            new_like = Like()
-            new_like.ip = ip_client
-            new_like.post = post
-
+            new_like = Like(ip=ip_client, post=post)
             new_like.save()
 
             liked = True
