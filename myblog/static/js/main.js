@@ -1,3 +1,4 @@
+// COMMENT AREA
 const textareas = document.querySelectorAll('textarea');
 
 textareas.forEach(textarea => {

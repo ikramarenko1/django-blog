@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import View
 from .models import Post, Like
 from .form import CommentsForm
@@ -54,42 +55,30 @@ def get_client_ip(request):
     return ip
 
 
-class AddLike(View):
+class ToggleLike(View):
     """
         Добавление лайка
     """
 
-    def get(self, request, pk):
+    def post(self, request, pk):
         ip_client = get_client_ip(request)
+        post = get_object_or_404(Post, pk=pk)
 
         try:
-            Like.objects.get(ip=ip_client, post_id=pk)
+            like = Like.objects.get(ip=ip_client, post=post)
 
-            return redirect(f'/{pk}')
+            like.delete()
 
-        except:
+            liked = False
+        except Like.DoesNotExist:
             new_like = Like()
             new_like.ip = ip_client
-            new_like.post_id = int(pk)
+            new_like.post = post
 
             new_like.save()
 
-            return redirect(f'/{pk}')
+            liked = True
 
+        like_count = post.like_set.count()
 
-class RemoveLike(View):
-    """
-        Удаление лайка
-    """
-
-    def get(self, request, pk):
-        ip_client = get_client_ip(request)
-
-        try:
-            cur_like = Like.objects.get(ip=ip_client)
-            cur_like.delete()
-
-            return redirect(f'/{pk}')
-
-        except:
-            return redirect(f'/{pk}')
+        return JsonResponse({'liked': liked, 'like_count': like_count})

@@ -77,7 +77,7 @@
 
 						<div class="post__likes">
 							<div class="post__toggle-like">
-								<a href="{% url 'add_like' post.id %}" id="add_like">
+								<a href="#" id="toggle_like" data-post-id="{{ post.id }}" {% if user_liked_post %}class="active"{% endif %}>
 									<svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 										width="800px" height="800px" viewBox="0 0 369.486 369.486"
 										xml:space="preserve">
@@ -95,7 +95,7 @@
 											</g>
 										</g>
 									</svg>
-									<span>{{ post.like_set.all.count }}</span>
+									<span id="like_count">{{ post.like_set.all.count }}</span>
 								</a>
 							</div>
 						</div>
