@@ -175,6 +175,41 @@
 		.post__content {
 			word-wrap: break-word;
 		}
+
+		.post__likes {
+			margin-top: 20px;
+
+			.post__toggle-like {
+				a {
+					display: inline-flex;
+					align-items: center;
+					gap: 5px;
+					width: auto;
+					cursor: pointer;
+					font-size: 18px;
+					transition: all .2s ease-in-out;
+
+					svg {
+						width: 100%;
+						max-width: 26px;
+						padding: 4px;
+						height: auto;
+						border-radius: 40%;
+						transition: all .2s ease-in-out;
+					}
+
+					&:hover,
+					&.active {
+						color: #e62e3b;
+
+						svg {
+							fill: #e62e3b;
+							background-color: #f19ba18a;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	.post__comments {

@@ -312,6 +312,33 @@ textarea.input__textarea {
 .post.post__page .post__body .post__content {
   word-wrap: break-word;
 }
+.post.post__page .post__body .post__likes {
+  margin-top: 20px;
+}
+.post.post__page .post__body .post__likes .post__toggle-like a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: auto;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s ease-in-out;
+}
+.post.post__page .post__body .post__likes .post__toggle-like a svg {
+  width: 100%;
+  max-width: 26px;
+  padding: 4px;
+  height: auto;
+  border-radius: 40%;
+  transition: all 0.2s ease-in-out;
+}
+.post.post__page .post__body .post__likes .post__toggle-like a:hover, .post.post__page .post__body .post__likes .post__toggle-like a.active {
+  color: #e62e3b;
+}
+.post.post__page .post__body .post__likes .post__toggle-like a:hover svg, .post.post__page .post__body .post__likes .post__toggle-like a.active svg {
+  fill: #e62e3b;
+  background-color: rgba(241, 155, 161, 0.5411764706);
+}
 .post.post__page .post__comments .input__textarea textarea {
   padding-bottom: 50px;
 }
