@@ -171,8 +171,8 @@ textarea.input__textarea {
 }
 .header__login-button:hover {
   cursor: pointer;
-  background-color: #fff;
-  transform: scale(0.98);
+  transform: scale(0.99);
+  text-shadow: 0 0 5px #fff;
 }
 .header__login-image img {
   width: 18px;
