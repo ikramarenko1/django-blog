@@ -229,6 +229,13 @@ textarea.input__textarea {
 .posts .post__title h3 {
   text-align: left;
 }
+.posts .post__title h3 a {
+  transition: all 0.2s ease-in-out;
+}
+.posts .post__title h3 a:hover {
+  transform: scale(0.99);
+  color: #4683d9;
+}
 .posts .post__description p {
   font-size: 14px;
 }

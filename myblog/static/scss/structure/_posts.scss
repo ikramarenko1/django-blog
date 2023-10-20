@@ -61,6 +61,15 @@
 		&__title {
 			h3 {
 				text-align: left;
+
+				a {
+					transition: all .2s ease-in-out;
+
+					&:hover {
+						transform: scale(.99);
+						color: #4683d9;
+					}
+				}
 			}
 		}
 	

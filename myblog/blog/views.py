@@ -12,7 +12,7 @@ class PostView(View):
     """
 
     def get(self, request):
-        posts = Post.objects.all()
+        posts = Post.objects.all().order_by('-date')
 
         return render(request, 'blog/blog.html', {'posts': posts})
 
