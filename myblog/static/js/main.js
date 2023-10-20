@@ -66,22 +66,21 @@ function getCookie(name) {
 // 
 // ======  COMMENT  ======
 // 
-const textareas = document.querySelectorAll('textarea');
-
-textareas.forEach(textarea => {
+$('textarea').each(function() {
+	const textarea = $(this);
 	const parentContainer = textarea.closest('div');
-	const submitButton = parentContainer.querySelector('input[type="submit"]');
+	const submitButton = parentContainer.find('input[type="submit"]');
 
-	submitButton.disabled = true;
-	
-	textarea.addEventListener('input', function () {
+	submitButton.prop('disabled', true);
+
+	textarea.on('input', function() {
 		this.style.height = 'auto';
 		this.style.height = this.scrollHeight + 'px';
 
-		if (this.value.trim() === '') {
-			submitButton.disabled = true;
+		if ($(this).val().trim() === '') {
+			submitButton.prop('disabled', true);
 		} else {
-			submitButton.disabled = false;
+			submitButton.prop('disabled', false);
 		}
 	});
 });

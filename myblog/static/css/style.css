@@ -339,9 +339,6 @@ textarea.input__textarea {
   fill: #e62e3b;
   background-color: rgba(241, 155, 161, 0.5411764706);
 }
-.post.post__page .post__comments .input__textarea textarea {
-  padding-bottom: 50px;
-}
 .post.post__page .post__comments .leave-comment {
   margin-top: 50px;
 }
