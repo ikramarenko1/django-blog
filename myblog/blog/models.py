@@ -7,6 +7,7 @@ class Post(models.Model):
     author = models.CharField('Автор', max_length=50)
     date = models.DateField('Дата публикации')
     img = models.ImageField('Изображение публикации', upload_to='image/%Y-%m/', null=True, blank=True)
+    ip = models.CharField('IP-адрес', max_length=100, null=True, blank=True)
 
     def __str__(self) -> str:
         return f'{self.title}, {self.author}'

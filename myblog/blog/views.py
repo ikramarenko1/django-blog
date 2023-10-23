@@ -2,10 +2,37 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import View
 from .models import Post, Like
-from .form import CommentsForm
+from .form import CommentsForm, PostForm
+
+from datetime import date
 
 
-# Create your views here.
+class AddPost(View):
+    """
+    Добавление новой записи
+    """
+
+    def get(self, request):
+        return render(request, 'blog/add_post.html')
+
+    def post(self, request):
+        ip_client = get_client_ip(request)
+        form = PostForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author_ip = ip_client
+
+            post.date = date.today()
+
+            post.save()
+
+            return render(request, 'blog/blog_post.html', {'post': post})
+
+        else:
+            return render(request, 'blog/add_post.html', {'form': form})
+
+
 class PostView(View):
     """
     Вывод записей
