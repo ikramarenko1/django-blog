@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import View
 from .models import Post, Like
 from .form import CommentsForm, PostForm
+from .utils import get_client_ip
 
 from datetime import date
 
@@ -13,23 +14,26 @@ class AddPost(View):
     """
 
     def get(self, request):
+        # Отображение формы для создания новой записи
         return render(request, 'blog/add_post.html')
 
     def post(self, request):
+        # Обрабатываем отправленную форму и сохраняем новую запись
         ip_client = get_client_ip(request)
-        form = PostForm(request.POST, request.FILES)
+        form = PostForm(request.POST, request.FILES)  # Создаем форму на основе отправленных данных
 
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save(commit=False)  # Сохраняем форму, но пока не коммитим в базу
             post.ip = ip_client
-
             post.date = date.today()
 
-            post.save()
-           
+            post.save()  # Коммитим в базу
+
+            # Перенаправляем пользователя на страницу новой записи
             return redirect(f'/{post.id}')
 
         else:
+            # Если есть ошибки в форме, возвращаем ее обратно с этими ошибками
             return render(request, 'blog/add_post.html', {'form': form})
 
 
@@ -39,8 +43,8 @@ class EditPost(View):
     """
 
     def get(self, request, pk):
-        post = get_object_or_404(Post, pk=pk)
-        form = PostForm(instance=post)
+        post = get_object_or_404(Post, pk=pk)  # Получаем запись по первичному ключу или возвращаем ошибку 404
+        form = PostForm(instance=post)  # Создаем форму на основе этой записи
 
         return render(request, 'blog/edit_post.html', {'form': form})
 
@@ -51,8 +55,10 @@ class EditPost(View):
         if form.is_valid():
             post = form.save()
 
-            return redirect(f'/{pk}')  # перенаправление на страницу этого поста
+            # Перенаправляем на страницу этого поста
+            return redirect(f'/{pk}')
         else:
+            # Если форма содержит ошибки, возвращаем ее с этими ошибками
             return render(request, 'blog/edit_post.html', {'form': form})
 
 
@@ -62,9 +68,10 @@ class DeletePost(View):
     """
 
     def get(self, request, pk):
-        post = get_object_or_404(Post, pk=pk)
-        post.delete()
+        post = get_object_or_404(Post, pk=pk)  # Получаем запись по первичному ключу или возвращаем ошибку 404
+        post.delete()  # Удаляем запись
 
+        # Перенаправляем на главную страницу
         return redirect('/')
 
 
@@ -74,7 +81,7 @@ class PostView(View):
     """
 
     def get(self, request):
-        posts = Post.objects.all().order_by('-date')
+        posts = Post.objects.all().order_by('-date')  # Получаем все записи и сортируем их по дате
 
         return render(request, 'blog/blog.html', {'posts': posts})
 
@@ -85,9 +92,9 @@ class PostDetail(View):
     """
 
     def get(self, request, pk):
-        post = Post.objects.get(id=pk)
+        post = Post.objects.get(id=pk)  # Получаем запись по ID
 
-        current_ip = get_client_ip(request)
+        current_ip = get_client_ip(request)  # Получаем IP-адрес текущего пользователя, для проверки его ли пост
         context = {
             'post': post,
             'current_ip': current_ip
@@ -102,25 +109,14 @@ class AddComment(View):
     """
     
     def post(self, request, pk):
-        form = CommentsForm(request.POST)
+        form = CommentsForm(request.POST)  # Создаем форму на основе отправленных данных
 
         if form.is_valid():
-            form = form.save(commit=False)
-            form.post_id = pk
-            form.save()
+            form = form.save(commit=False)  # Сохраняем, но пока не коммитим в базу
+            form.post_id = pk  # Устанавливаем связь с записью блога
+            form.save()  # Коммитим
 
         return redirect(f'/{pk}')
-
-
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]  # вытаскиваем IP адрес нашего клиента
-    else:
-        ip = request.META.get('REMOTE_ADDR')  # IP с которого к нам поступил запрос, хорошо в том случае, если клиент использует сторонние ресурсы
-
-    return ip
 
 
 class ToggleLike(View):
@@ -132,17 +128,21 @@ class ToggleLike(View):
         ip_client = get_client_ip(request)
         post = get_object_or_404(Post, pk=pk)
 
+        # Пытаемся получить лайк этого пользователя для этой записи
         try:
             like = Like.objects.get(ip=ip_client, post=post)
             like.delete()
 
             liked = False
+
+        # Если лайка нет, создаем новый
         except Like.DoesNotExist:
             new_like = Like(ip=ip_client, post=post)
             new_like.save()
 
             liked = True
 
+        # Считаем общее количество лайков для этой записи
         like_count = post.like_set.count()
 
         return JsonResponse({'liked': liked, 'like_count': like_count})
@@ -158,12 +158,14 @@ class CheckLikeStatus(View):
         post_id = request.POST.get('post_id')
         post = get_object_or_404(Post, pk=post_id)
 
+        # Пытаемся получить лайк этого пользователя для этой записи
         try:
             like = Like.objects.get(ip=ip_client, post=post)
             liked = True
         except Like.DoesNotExist:
             liked = False
 
+        # Считаем общее количество лайков для этой записи
         like_count = post.like_set.count()
 
         return JsonResponse({'liked': liked, 'like_count': like_count})

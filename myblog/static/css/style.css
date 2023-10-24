@@ -84,8 +84,7 @@ body {
   padding-inline: 10px;
 }
 
-input,
-textarea {
+input, textarea {
   background-color: #f7f7f7;
   border: 1px solid rgba(0, 0, 0, 0.03);
   border-radius: 10px;
@@ -96,32 +95,27 @@ textarea {
   resize: none;
   transition: background-color 0.1s linear, border-color 0.1s linear, box-shadow 0.1s linear;
 }
-@media (max-width: 598px) {
-  input,
-  textarea {
-    margin-block: 5px;
-  }
-}
-input:hover,
-textarea:hover {
+input:hover, textarea:hover {
   background-color: #fff;
   border-color: #bdd6fa;
   box-shadow: 0 0 0 3px rgba(70, 131, 217, 0.12);
 }
-input:focus,
-textarea:focus {
+input:focus, textarea:focus {
   background-color: #fff;
-  border-color: #4683d9 !important;
+  border-color: #4683d9;
   box-shadow: 0 0 0 3px rgba(70, 131, 217, 0.12);
 }
 
-input {
-  max-width: 300px;
-}
 @media (max-width: 598px) {
+  input, textarea {
+    margin-block: 5px;
+  }
   input {
     max-width: none;
   }
+}
+input {
+  max-width: 300px;
 }
 input[type=submit] {
   background-color: #4683d9;
@@ -149,9 +143,6 @@ input[type=checkbox] {
 textarea {
   min-height: 150px;
   overflow-y: hidden;
-}
-textarea.input__textarea {
-  padding-bottom: 30px;
 }
 
 .user-image {
@@ -200,9 +191,9 @@ textarea.input__textarea {
   background-color: transparent;
   border-radius: 5px;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 .header__login-button:hover {
-  cursor: pointer;
   transform: scale(0.99);
   text-shadow: 0 0 5px #fff;
 }
@@ -225,7 +216,7 @@ textarea.input__textarea {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  background-color: #fff;
+  background-color: #f7f7f7;
   border-radius: 8px;
   width: calc(100% - 40px);
   max-width: 600px;
@@ -279,7 +270,7 @@ textarea.input__textarea {
 .post.post__page {
   width: 100%;
   max-width: 964px;
-  background-color: #fff;
+  background-color: #f7f7f7;
   padding-block: 20px;
   margin: 0 auto;
   display: flex;
