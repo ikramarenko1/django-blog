@@ -87,7 +87,13 @@ class PostDetail(View):
     def get(self, request, pk):
         post = Post.objects.get(id=pk)
 
-        return render(request, 'blog/blog_post.html', {'post': post})
+        current_ip = get_client_ip(request)
+        context = {
+            'post': post,
+            'current_ip': current_ip
+        }
+
+        return render(request, 'blog/blog_post.html', context)
     
 
 class AddComment(View):

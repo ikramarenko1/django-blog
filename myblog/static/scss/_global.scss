@@ -90,6 +90,12 @@ input {
 			opacity: .5;
 		}
 	}
+
+	&[type="checkbox"] {
+		display: inline-flex;
+		max-width: none;
+		width: auto;
+	}
 }
 
 textarea {

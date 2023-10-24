@@ -31,7 +31,6 @@
 				</div>
 				<div class="header__login-content">
 					<a href="/admin">Admin Panel</a>
-					<a href="{% url 'add_post' %}">Создать пост</a>
 				</div>
 			</div>
 		</header>
@@ -40,6 +39,7 @@
 			- MAIN
 		-->
 		<main class="main">
+			<a href="{% url 'add_post' %}" class="create-post__button">Создать пост</a>
 			<div class="posts">
 		
 				{% for post in posts %}

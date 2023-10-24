@@ -41,7 +41,7 @@
 		<main class="main">
 			<div class="edit-post">
 				<div class="back-button">
-					<a href="/">
+					<a href="javascript:history.back()">
 						<object data="{% static "img/back-btn.svg" %}" type="image/svg+xml">
 							<!-- Ваш браузер не поддерживает отображение объектов SVG -->
 						</object>
@@ -54,7 +54,7 @@
 				<form method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 					{{ form.as_p }} 
-					<input type="submit" value="Сохранить изменения">
+					<input type="submit" value="Сохранить">
 				</form>
 			</div>
 		</main>
