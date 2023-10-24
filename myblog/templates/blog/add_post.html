@@ -1,99 +1,42 @@
+{% extends "blog/base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ post.title }}</title>
+{% block title %}{{ post.title }}{% endblock %}
 
-	<!--
-		- css
-	-->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% block content %}
+<main class="main">
+	<div class="create-post">
+		<div class="back-button">
+			<a href="javascript:history.back()">
+				<object data="{% static "img/back-btn.svg" %}" type="image/svg+xml">
+					<!-- Ваш браузер не поддерживает отображение объектов SVG -->
+				</object>
+				Вернуться назад
+			</a>
+		</div>
 
-</head>
-<body>
-	<div class="content">
-		<!--
-			- HEADER
-		-->
-		<header class="header">
-			<div class="header__logo logo">
-				<a href="/">
-					<img src="{% static "img/logos/logo.png" %}" alt="">
-				</a>
+		<h1>Создать пост</h1>
+
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="form-group">
+				<label for="title">Заголовок*:</label>
+				<input type="text" name="title" id="title" required placeholder="Введите заголовок поста">
 			</div>
-
-			<div class="header__login-button">
-				<div class="header__login-image">
-					<img src="{% static "img/person.png" %}" alt="">
-				</div>
-				<div class="header__login-content">
-					<a href="/admin">Admin Panel</a>
-				</div>
+			<div class="form-group">
+				<label for="img">Изображение:</label>
+				<input type="file" name="img" id="img">
 			</div>
-		</header>
-		
-		<!--
-			- MAIN
-		-->
-		<main class="main">
-			<div class="create-post">
-				<div class="back-button">
-					<a href="javascript:history.back()">
-						<object data="{% static "img/back-btn.svg" %}" type="image/svg+xml">
-							<!-- Ваш браузер не поддерживает отображение объектов SVG -->
-						</object>
-						Вернуться назад
-					</a>
-				</div>
-
-				<h1>Создать пост</h1>
-
-				<form method="post" enctype="multipart/form-data">
-					{% csrf_token %}
-					<div class="form-group">
-						<label for="title">Заголовок*:</label>
-						<input type="text" name="title" id="title" required placeholder="Введите заголовок поста">
-					</div>
-					<div class="form-group">
-						<label for="img">Изображение:</label>
-						<input type="file" name="img" id="img">
-					</div>
-					<div class="form-group">
-						<label for="description">Содержание*:</label>
-						<textarea name="description" id="description" rows="4" required placeholder="Введите содержимое поста"></textarea>
-					</div>
-					<div class="form-group">
-						<label for="author">Автор*:</label>
-						<input type="text" name="author" id="author" required placeholder="Введите автора поста">
-					</div>
-					<input type="submit" value="Создать">
-				</form>
+			<div class="form-group">
+				<label for="description">Содержание*:</label>
+				<textarea name="description" id="description" rows="4" required placeholder="Введите содержимое поста"></textarea>
 			</div>
-		</main>
-
-		<!--
-			- FOOTER
-		-->
-		<footer class="footer">
-			<div class="footer__logo logo">
-				<a href="/">
-					<img src="{% static "img/logos/logo.png" %}" alt="">
-				</a>
+			<div class="form-group">
+				<label for="author">Автор*:</label>
+				<input type="text" name="author" id="author" required placeholder="Введите автора поста">
 			</div>
-			
-			<div class="footer__copyright">
-				© Copyright. <br>
-				All Rights Reserved.
-			</div>
-		</footer>
+			<input type="submit" value="Создать">
+		</form>
 	</div>
-
-	<!--
-		- js
-	-->
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-</body>
-</html>
+</main>
+{% endblock %}

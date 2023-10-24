@@ -1,96 +1,40 @@
-{% load static %}
+{% extends "blog/base.html" %}
+{% block title %}Blog{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Blog</title>
+{% block content %}
+<main class="main">
+	<a href="{% url 'add_post' %}" class="create-post__button">Создать пост</a>
+	<div class="posts">
 
-	<!--
-		- css
-	-->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+		{% for post in posts %}
 
-</head>
-<body>
-	<div class="content">
-		<!--
-			- HEADER
-		-->
-		<header class="header">
-			<div class="header__logo logo">
-				<a href="/">
-					<img src="{% static "img/logos/logo.png" %}" alt="">
-				</a>
-			</div>
-
-			<div class="header__login-button">
-				<div class="header__login-image">
-					<img src="{% static "img/person.png" %}" alt="">
+			<div class="post">
+				<div class="post__header">
+					<div class="post__author-photo user-image"></div>
+					<div class="post__author-name">{{ post.author }}</div>
+					<div class="post__publishdate">{{ post.date }}</div>
 				</div>
-				<div class="header__login-content">
-					<a href="/admin">Admin Panel</a>
-				</div>
-			</div>
-		</header>
 
-		<!--
-			- MAIN
-		-->
-		<main class="main">
-			<a href="{% url 'add_post' %}" class="create-post__button">Создать пост</a>
-			<div class="posts">
-		
-				{% for post in posts %}
-		
-					<div class="post">
-						<div class="post__header">
-							<div class="post__author-photo user-image"></div>
-							<div class="post__author-name">{{ post.author }}</div>
-							<div class="post__publishdate">{{ post.date }}</div>
-						</div>
-		
-						<div class="post__body">
-							<div class="post__title">
-								<h3><a href="{{ post.id }}">{{ post.title }}</a></h3>
-							</div>
-							<div class="post__description">
-								<p>{{ post.description|truncatewords:50 }}</p>
-							</div>
-		
-							{% if post.img %}
-							<div class="post__image">
-								<a href="{{ post.id }}">
-									<img src="{{ post.img.url }}" alt="Post Image">
-								</a>
-							</div>
-							{% endif %}
-		
-						</div>
+				<div class="post__body">
+					<div class="post__title">
+						<h3><a href="{{ post.id }}">{{ post.title }}</a></h3>
 					</div>
-		
-				{% endfor %}
-			</div>
-		</main>
+					<div class="post__description">
+						<p>{{ post.description|truncatewords:50 }}</p>
+					</div>
 
-		<!--
-			- FOOTER
-		-->
-		<footer class="footer">
-			<div class="footer__logo logo">
-				<a href="/">
-					<img src="{% static "img/logos/logo.png" %}" alt="">
-				</a>
+					{% if post.img %}
+					<div class="post__image">
+						<a href="{{ post.id }}">
+							<img src="{{ post.img.url }}" alt="Post Image">
+						</a>
+					</div>
+					{% endif %}
+
+				</div>
 			</div>
-			
-			<div class="footer__copyright">
-				© Copyright. <br>
-				All Rights Reserved.
-			</div>
-		</footer>
+
+		{% endfor %}
 	</div>
-
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-</body>
-</html>
+</main>
+{% endblock %}

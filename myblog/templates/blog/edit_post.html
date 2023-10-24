@@ -1,84 +1,27 @@
+{% extends "blog/base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ post.title }}</title>
+{% block title %}{{ post.title }}{% endblock %}
 
-	<!--
-		- css
-	-->
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% block content %}
+<main class="main">
+	<div class="edit-post">
+		<div class="back-button">
+			<a href="javascript:history.back()">
+				<object data="{% static "img/back-btn.svg" %}" type="image/svg+xml">
+					<!-- Ваш браузер не поддерживает отображение объектов SVG -->
+				</object>
+				Вернуться назад
+			</a>
+		</div>
 
-</head>
-<body>
-	<div class="content">
-		<!--
-			- HEADER
-		-->
-		<header class="header">
-			<div class="header__logo logo">
-				<a href="/">
-					<img src="{% static "img/logos/logo.png" %}" alt="">
-				</a>
-			</div>
+		<h1>Редактировать пост</h1>
 
-			<div class="header__login-button">
-				<div class="header__login-image">
-					<img src="{% static "img/person.png" %}" alt="">
-				</div>
-				<div class="header__login-content">
-					<a href="/admin">Admin Panel</a>
-				</div>
-			</div>
-		</header>
-		
-		<!--
-			- MAIN
-		-->
-		<main class="main">
-			<div class="edit-post">
-				<div class="back-button">
-					<a href="javascript:history.back()">
-						<object data="{% static "img/back-btn.svg" %}" type="image/svg+xml">
-							<!-- Ваш браузер не поддерживает отображение объектов SVG -->
-						</object>
-						Вернуться назад
-					</a>
-				</div>
-		
-				<h1>Редактировать пост</h1>
-		
-				<form method="post" enctype="multipart/form-data">
-					{% csrf_token %}
-					{{ form.as_p }} 
-					<input type="submit" value="Сохранить">
-				</form>
-			</div>
-		</main>
-
-		<!--
-			- FOOTER
-		-->
-		<footer class="footer">
-			<div class="footer__logo logo">
-				<a href="/">
-					<img src="{% static "img/logos/logo.png" %}" alt="">
-				</a>
-			</div>
-			
-			<div class="footer__copyright">
-				© Copyright. <br>
-				All Rights Reserved.
-			</div>
-		</footer>
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }} 
+			<input type="submit" value="Сохранить">
+		</form>
 	</div>
-
-	<!--
-		- js
-	-->
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-</body>
-</html>
+</main>
+{% endblock %}
