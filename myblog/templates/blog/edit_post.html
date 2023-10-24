@@ -39,7 +39,7 @@
 			- MAIN
 		-->
 		<main class="main">
-			<div class="create-post">
+			<div class="edit-post">
 				<div class="back-button">
 					<a href="/">
 						<object data="{% static "img/back-btn.svg" %}" type="image/svg+xml">
@@ -48,28 +48,13 @@
 						Вернуться назад
 					</a>
 				</div>
-
-				<h1>Создать пост</h1>
-
+		
+				<h1>Редактировать пост</h1>
+		
 				<form method="post" enctype="multipart/form-data">
 					{% csrf_token %}
-					<div class="form-group">
-						<label for="title">Заголовок*:</label>
-						<input type="text" name="title" id="title" required placeholder="Введите заголовок поста">
-					</div>
-					<div class="form-group">
-						<label for="img">Изображение:</label>
-						<input type="file" name="img" id="img">
-					</div>
-					<div class="form-group">
-						<label for="description">Содержание*:</label>
-						<textarea name="description" id="description" rows="4" required placeholder="Введите содержимое поста"></textarea>
-					</div>
-					<div class="form-group">
-						<label for="author">Автор*:</label>
-						<input type="text" name="author" id="author" required placeholder="Введите автора поста">
-					</div>
-					<input type="submit" value="Создать">
+					{{ form.as_p }} 
+					<input type="submit" value="Сохранить изменения">
 				</form>
 			</div>
 		</main>

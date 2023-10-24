@@ -21,16 +21,51 @@ class AddPost(View):
 
         if form.is_valid():
             post = form.save(commit=False)
-            post.author_ip = ip_client
+            post.ip = ip_client
 
             post.date = date.today()
 
             post.save()
-
-            return render(request, 'blog/blog_post.html', {'post': post})
+           
+            return redirect(f'/{post.id}')
 
         else:
             return render(request, 'blog/add_post.html', {'form': form})
+
+
+class EditPost(View):
+    """
+    Редактирование существующей записи
+    """
+
+    def get(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        form = PostForm(instance=post)
+
+        return render(request, 'blog/edit_post.html', {'form': form})
+
+    def post(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        form = PostForm(request.POST, request.FILES, instance=post)
+
+        if form.is_valid():
+            post = form.save()
+
+            return redirect(f'/{pk}')  # перенаправление на страницу этого поста
+        else:
+            return render(request, 'blog/edit_post.html', {'form': form})
+
+
+class DeletePost(View):
+    """
+    Удаление записи
+    """
+
+    def get(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        post.delete()
+
+        return redirect('/')
 
 
 class PostView(View):

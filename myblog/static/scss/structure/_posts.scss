@@ -241,3 +241,16 @@
 		}
 	}
 }
+
+.create-post,
+.edit-post {
+	width: 100%;
+	max-width: 964px;
+	padding: 20px;
+	margin: 0 auto;
+
+	h1 {
+		text-transform: uppercase;
+		text-align: center;
+	}
+}

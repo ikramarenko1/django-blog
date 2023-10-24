@@ -9,6 +9,12 @@ body {
 	background-color: #f2f2f2;
 }
 
+.content {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
 .logo {
 
 	// .logo img
@@ -100,4 +106,30 @@ textarea {
 	width: 22px;
 	height: 22px;
 	border-radius: 6px;
+}
+
+.back-button {
+	a {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		font-size: 12px;
+		text-transform: uppercase;
+		color: #000;
+		transition: all .2s ease-in-out;
+
+		object {
+			width: 25px;
+			height: 25px;
+			transition: all .2s ease-in-out;
+		}
+
+		&:hover {
+			color: #8fb7f9;
+
+			object {
+				transform: translateX(-5px);
+			}
+		}
+	}
 }

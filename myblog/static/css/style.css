@@ -71,6 +71,12 @@ body {
   background-color: #f2f2f2;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
 .logo img {
   width: 100%;
   max-width: 75px;
@@ -148,6 +154,27 @@ textarea.input__textarea {
   width: 22px;
   height: 22px;
   border-radius: 6px;
+}
+
+.back-button a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #000;
+  transition: all 0.2s ease-in-out;
+}
+.back-button a object {
+  width: 25px;
+  height: 25px;
+  transition: all 0.2s ease-in-out;
+}
+.back-button a:hover {
+  color: #8fb7f9;
+}
+.back-button a:hover object {
+  transform: translateX(-5px);
 }
 
 .header {
@@ -362,9 +389,26 @@ textarea.input__textarea {
   gap: 5px;
 }
 
+.create-post,
+.edit-post {
+  width: 100%;
+  max-width: 964px;
+  padding: 20px;
+  margin: 0 auto;
+}
+.create-post h1,
+.edit-post h1 {
+  text-transform: uppercase;
+  text-align: center;
+}
+
 /*
 	===== MAIN =====
 */
+main.main {
+  flex-grow: 1;
+}
+
 .footer {
   width: 100%;
   background-color: #c7dcff;
